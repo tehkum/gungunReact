@@ -1,88 +1,20 @@
-// import { useContext, useEffect, useState } from "react";
-// import CartCard from "../../components/CartCard";
+import { useEffect, useState } from "react";
 import "./Cartpage.css";
-// import { useCart } from "../../context/CartProvider";
-// import { useNavigate } from "react-router-dom";
-// import LoadingCartCard from "../../components/LoadingCartCard";
-// import AlertBox from "../../components/AlertBox";
+import CartCard from "../../Components/CartBox";
+
 
 export default function CartPage() {
-//   const { cartState, cartDispatch } = useContext(useCart);
-//   const [ btnClicked, setClicked ] = useState({clicked: false, message: ""}) 
-  
+  const [ cartData, setCart ] = useState([]);
 
-//   const totalPrice = Math.floor(
-//     (cartState?.mainCart ?? []).reduce(
-//       (total, { price, qty }) => qty * (total + price),
-//       0
-//     )
-//   );
-
-//   useEffect(()=>{
-//     window.scrollTo({
-//       top: 100,
-//       left: 100,
-//       behavior: "smooth",
-//     });
-//   },[])
-
-//   const navigate = useNavigate();
-
-//   const wayToCheckout = () => {
-//     if(cartState?.mainCart?.length){
-//       cartDispatch({type: "checkOut"});
-//       navigate("/address");
-//     }else {
-//       setClicked({clicked: !btnClicked?.clicked, message: "Cart is empty"})
-//     }
-//   };
+  useEffect(()=>{
+    setCart(JSON.parse(localStorage.getItem("cart")) ?? [] )
+  },[cartData])
 
   return (
     <>
       <div className="cartpage">
         <div className="left-cart-area">
           <h1>Your Cart</h1>
-          {/* <p>
-            TOTAL [{(cartState?.mainCart?.length ?? 0)}] <b>₹{totalPrice}</b>
-          </p>
-          {cartState?.cartLoading ? (
-            <>
-              <LoadingCartCard />
-              <LoadingCartCard />
-              <LoadingCartCard />
-              <LoadingCartCard />
-              <LoadingCartCard />
-            </>
-          ) : (cartState?.mainCart?.length ? (
-            cartState?.mainCart?.map(
-              ({ _id, title, description, price, image, qty }) => (
-                <CartCard
-                  id={_id}
-                  title={title}
-                  description={description}
-                  price={price}
-                  image={image}
-                  qty={qty}
-                />
-              )
-            )
-          ) : (
-            "Your cart is Empty"
-          ))}
-        </div>
-        <div className="right-cart-area">
-          <button className="btn btn-primary" onClick={wayToCheckout}>
-            PROCEED TO CHECKOUT
-          </button>
-          <h2>Order summary</h2>
-          <div className="sec1-cart-right">
-            <p>{cartState?.mainCart?.length ?? 0} item</p>
-            <p>₹{totalPrice}</p>
-          </div>
-          
-            {cartState?.mainCart?.map(({title, price, qty})=><div className="sec1-cart-right"><p>{title} x{qty}</p>
-            <p>₹{price}</p></div>)}
-           */}
           <div className="sec2-cart-right">
             <p>Delivery</p>
             <p>FREE</p>
@@ -97,6 +29,12 @@ export default function CartPage() {
             </div>
             {/* <p>₹{totalPrice}</p> */}
           </div>
+          <ul>{
+            cartData.map(item=>{
+              const { _id, name, amount } = item;
+              return <CartCard key={_id} _id={_id} name={name} amount={amount} />
+            })
+          }</ul>
           <hr />
           <div className="payment-logos">
             <img

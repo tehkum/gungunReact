@@ -6,24 +6,29 @@ import axios from "axios";
 export const useProducts = createContext();
 
 export function ProductProvider({ children }) {
-  const [productData, setProductData] = useState([]);
+  const [ productData, setProductData ] = useState([])
+  const [ isClicked, setClicked ] = useState(false);
 
-  const getProduct = async () => {
-    const res = await fetch("http://localhost:3000/api/admin/products", {
-      method: "GET",
-    });
-    setProductData(await res.json());
-    // console.log(await res.json());
+  
+  const fetchData = async () => {
+    const res = await axios.get("http://localhost:3000/api/admin/products");
+    setProductData(res.data);
   };
-  useEffect(() => {
-    getProduct();
-  }, [productData]);
 
+  useEffect(() => {   
+    fetchData();
+  }, [isClicked]);
+
+  const clicked = () => {
+    setClicked(!isClicked);
+  }
+  
   return (
     <useProducts.Provider
       value={{
         productData,
         setProductData,
+        clicked
       }}
     >
       {children}
