@@ -1,16 +1,19 @@
 const Product = require('../models/productModel');
 const Orders = require('../models/orderModel');
+const Youtube = require('../models/youtubeModel');
 
 
 async function getAdminPage(req, res) {
     try {
         const products = await Product.find();
         const orders = await Orders.find();
+        const youtube = await Youtube.find();
 
-        res.json({
+        res.status(200).json({
             success: true,
             products: products,
-            orders: orders
+            orders: orders,
+            youtube: youtube
         });
     } catch (error) {
         console.error('Error:', error);
@@ -21,7 +24,10 @@ async function getAdminPage(req, res) {
 async function getAllProducts(req, res) {
     try {
         const products = await Product.find();
-        res.json(products);
+        res.status(200).json({
+            success: true,
+            products: products
+        });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -30,8 +36,10 @@ async function getAllProducts(req, res) {
 
 async function getEditProduct(req, res) {
     try {
-        res.json({
-            success: true
+        res.status(200).json({
+            success: true,
+            message: "Get Edit Product Called!",
+            id: req.params.id
         });
     } catch (error) {
         console.error('Error:', error);
@@ -45,7 +53,7 @@ async function editProduct(req, res) {
         const updateProduct = await Product.findByIdAndUpdate(id, req.body, {
             new: true
         });
-        res.json({
+        res.status(200).json({
             success: true,
             updateProduct,
             message: "Product edited successfully"
@@ -62,9 +70,10 @@ async function deleteProduct(req, res) {
 
         Product.findByIdAndDelete(id);
 
-        res.json({
+        res.status(200).json({
             success: true,
-            message: "Product deleted successfully"
+            message: "Product deleted successfully",
+            id: req.params.id
         });
     } catch (error) {
         console.error('Error:', error);
@@ -74,8 +83,9 @@ async function deleteProduct(req, res) {
 
 async function getAddProduct(req, res) {
     try {
-        res.json({
+        res.status(200).json({
             success: true,
+            message: "Get Add Product Called Successfully!"
         });
     } catch (error) {
         console.error('Error:', error);
@@ -98,16 +108,90 @@ async function addProduct(req, res) {
             language: language
         });
 
-        Product.insertOne(product)
-            .then((result) => {
-                console.log(result);
-                res.json({
-                    success: true
-                })
+        // Product.insertOne(product)
+        //     .then((result) => {
+        //         console.log(result);
+        //         res.status(200).json({
+        //             success: true
+        //         })
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error inserting product:', error);
+        //     });
+
+        Product.create(product).then(createdProduct => {
+            console.log('Product created:', createdProduct);
+            res.status(200).json({
+                success: true,
+                message: "Product added successfully"
             })
-            .catch((error) => {
-                console.error('Error inserting user:', error);
-            });
+          })
+          .catch(error => {
+            console.error('Error creating product:', error);
+          });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+async function getAddYoutube(req, res) {
+    try {
+        res.status(200).json({
+            success: true,
+            message: "getAddYoutube called successfully!"
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+async function addYoutube(req, res) {
+    try {
+        const { title, link} = req.body;
+        const youtube = new Youtube({
+            title: title,
+            link: link
+        });
+
+        // Youtube.insertOne(youtube)
+        //     .then((result) => {
+        //         console.log(result);
+        //         res.status(200).json({
+        //             success: true
+        //         })
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error inserting user:', error);
+        //     });
+
+        Youtube.create(youtube).then(createdYoutube => {
+            console.log('Youtube created:', createdYoutube);
+            res.status(200).json({
+                success: true,
+                message: "Youtube added successfully"
+            })
+          })
+          .catch(error => {
+            console.error('Error creating youtube:', error);
+          });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+async function deleteYoutube(req, res) {
+    try {
+        const { id } = req.params;
+
+        Youtube.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success: true,
+            message: "Youtube Video deleted successfully"
+        });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -117,7 +201,10 @@ async function addProduct(req, res) {
 async function getAllOrders(req, res) {
     try {
         const orders = await Orders.find();
-        res.json(orders);
+        res.status(200).json({
+            success: true,
+            orders: orders
+        });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -133,5 +220,8 @@ module.exports =
     deleteProduct: deleteProduct,
     getAddProduct: getAddProduct,
     addProduct: addProduct,
+    getAddYoutube: getAddYoutube, 
+    addYoutube: addYoutube, 
+    deleteYoutube: deleteYoutube,
     getAllOrders: getAllOrders
 }

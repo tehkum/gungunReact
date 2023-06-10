@@ -6,7 +6,7 @@ import "./Cartpage.css";
 // import LoadingCartCard from "../../components/LoadingCartCard";
 // import AlertBox from "../../components/AlertBox";
 
-export function CartPage() {
+export default function CartPage() {
 //   const { cartState, cartDispatch } = useContext(useCart);
 //   const [ btnClicked, setClicked ] = useState({clicked: false, message: ""}) 
   

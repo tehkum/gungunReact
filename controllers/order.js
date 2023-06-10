@@ -1,6 +1,6 @@
 async function getCheckoutPage(req, res) {
     try {
-       res.json({
+       res.status(200).json({
         success: true
        });
     } catch (error) {
@@ -11,10 +11,10 @@ async function getCheckoutPage(req, res) {
 
 async function checkout(req, res) {
     try {
-        const sql = 'SELECT * FROM products';
-        const results = await runQuery(sql);
-
-        res.json(results);
+        res.status(200).json({
+            success: true,
+            message: "Checked out Successfully"
+        })
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -23,7 +23,7 @@ async function checkout(req, res) {
 
 async function getDeliveryPage(req, res) {
     try {
-        res.json({
+        res.status(200).json({
             success: true
            });
     } catch (error) {
@@ -34,7 +34,7 @@ async function getDeliveryPage(req, res) {
 
 async function confirmDelivery(req, res) {
     try {
-        res.json({
+        res.status(200).json({
             success: true
         });
           
@@ -46,7 +46,7 @@ async function confirmDelivery(req, res) {
 
 async function getConfirmOrder(req, res) {
     try {
-        res.json({
+        res.status(200).json({
             success: true
            });
     } catch (error) {
@@ -56,7 +56,7 @@ async function getConfirmOrder(req, res) {
 }
 
 
-module.exports = 
+module.exports =
 {
     getCheckoutPage: getCheckoutPage,
     checkout: checkout,
