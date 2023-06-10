@@ -9,7 +9,7 @@ export default function ProductManage(){
     price: '',
     description1: '',
     description2: '',
-    manufacturingYear: '',
+    manufactureYear: '',
     edition: '',
     numberOfPages: '',
     language: ''
@@ -25,13 +25,14 @@ export default function ProductManage(){
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    return await fetch("http://localhost:3000/api/admin/products/add",{method: "POST", data: {...formData}})
   };
 
 
   return ( <div>
-    <form onSubmit={handleSubmit} className="login-sec-2">
+    <form  className="login-sec-2">
         <h1>Add Product</h1>
       <label>
         <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder='Name'/>
@@ -54,7 +55,7 @@ export default function ProductManage(){
       </label>
 
       <label>
-        <input type="text" name="manufacturingYear" value={formData.manufacturingYear} onChange={handleChange} placeholder='Manufacturing year'/>
+        <input type="text" name="manufactureYear" value={formData.manufactureYear} onChange={handleChange} placeholder='Manufacturing year'/>
       </label>
 
       <label>
@@ -72,13 +73,16 @@ export default function ProductManage(){
         <input type="text" name="language" value={formData.language} onChange={handleChange} placeholder='Language'/>
       </label>
 
-      <button type="submit" onClick={clicked}>Submit</button>
+      <button type="submit" onClick={()=> {
+        clicked();
+        handleSubmit();
+        }}>Submit</button>
     </form>
     <div className="product-display">
         <ul>{
             productData.map(items=>{
              const { _id, name, category, description1, description2, manufactureYear, price, edition, numberOfPages, language } = items;
-             return <li key={_id}>{name} -- { category } -- { description1 } -- { description2 } -- {manufactureYear} -- { price } -- { edition } -- { numberOfPages } -- { language }</li>     
+             return <><li key={_id}>{name} -- { category } -- { description1 } -- { description2 } -- {manufactureYear} -- { price } -- { edition } -- { numberOfPages } -- { language }</li></>   
             })    
         }</ul>
     </div>
