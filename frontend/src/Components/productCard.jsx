@@ -1,6 +1,11 @@
 import "./Productcard.css";
 
-export default function Productcard() {
+export default function Productcard(props) {
+
+  const setCart = () => {
+    localStorage.setItem("cart", [...JSON.parse(localStorage.getItem("cart")), JSON.stringify({...props})])
+  }
+
   return (
     <div className="productcard">
       <div className="product-card-img">
@@ -11,7 +16,8 @@ export default function Productcard() {
       <h2>Product Name</h2>
       <p className="product-cat">Product Category</p>
       <p>Product size</p>
-      <button>Add To Cart</button></div>
+      <button onClick={setCart}>Add To Cart</button>
+      </div>
     </div>
   );
 }
