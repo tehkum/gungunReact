@@ -11,24 +11,24 @@ export default function HomePage() {
 
 
 
-  const addProduct = () => {
+  // const addProduct = () => {
     
-  };
+  // };
 
   return (
     <>
       <div className="home-carousel">
         <Carousel>
           <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 1" width="100" height="100" className="Image-carousel
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 1" height="600" className="Image-carousel
             "/>
           </div>
           <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 2" width="100" height="100" className="Image-carousel
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 2" height="600" className="Image-carousel
             "/>
           </div>
           <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 3" width="100" height="100" className="Image-carousel
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 3" height="600" className="Image-carousel
             "/>
           </div>
         </Carousel>

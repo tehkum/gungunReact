@@ -1,6 +1,7 @@
 import {  useContext, useState } from 'react';
 import "./ProductManage.css"
 import { useProducts } from '../../main';
+import Admincard from '../../Components/AdminCard';
 
 export default function ProductManage(){
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ export default function ProductManage(){
     language: ''
   });
 
-  const { productData, clicked } = useContext(useProducts);
+  const { productData } = useContext(useProducts);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,12 +78,12 @@ export default function ProductManage(){
       <button type="submit" onClick={handleSubmit}>Submit</button>
     </form>
     <div className="product-display">
-        <ul>{
+        {
             productData?.map(items=>{
              const { _id, name, category, description1, description2, manufactureYear, price, edition, numberOfPages, language } = items;
-             return <><li key={_id}>{name} -- { category } -- { description1 } -- { description2 } -- {manufactureYear} -- { price } -- { edition } -- { numberOfPages } -- { language }</li></>   
+             return <Admincard key={_id} _id={_id} name={name} category={category} description1={description1} description2={description2} price={price} edition={edition} manufactureYear={manufactureYear} numberOfPages={numberOfPages} language={language}/>
             })    
-        }</ul>
+        }
     </div>
     </div>);
 }
