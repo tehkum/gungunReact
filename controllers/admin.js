@@ -68,12 +68,12 @@ async function deleteProduct(req, res) {
     try {
         const { id } = req.params;
 
-        Product.findByIdAndDelete(id);
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
         res.status(200).json({
             success: true,
             message: "Product deleted successfully",
-            id: req.params.id
+            deletedProduct: deletedProduct
         });
     } catch (error) {
         console.error('Error:', error);
@@ -120,7 +120,7 @@ async function addProduct(req, res) {
         //     });
 
         Product.create(product).then(createdProduct => {
-            console.log('Product created:', createdProduct);
+            // console.log('Product created:', createdProduct);
             res.status(200).json({
                 success: true,
                 message: "Product added successfully"
@@ -167,7 +167,7 @@ async function addYoutube(req, res) {
         //     });
 
         Youtube.create(youtube).then(createdYoutube => {
-            console.log('Youtube created:', createdYoutube);
+            // console.log('Youtube created:', createdYoutube);
             res.status(200).json({
                 success: true,
                 message: "Youtube added successfully"
@@ -186,11 +186,12 @@ async function deleteYoutube(req, res) {
     try {
         const { id } = req.params;
 
-        Youtube.findByIdAndDelete(id);
+        const deletedYoutube = await Youtube.findByIdAndDelete(id);
 
         res.status(200).json({
             success: true,
-            message: "Youtube Video deleted successfully"
+            message: "Youtube video deleted successfully",
+            deletedYoutube: deletedYoutube
         });
     } catch (error) {
         console.error('Error:', error);
