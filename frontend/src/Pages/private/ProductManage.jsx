@@ -27,7 +27,8 @@ export default function ProductManage(){
 
   const handleSubmit = async () => {
     // e.preventDefault();
-    return await fetch("http://localhost:3000/api/admin/products/add",{method: "POST", data: {...formData}})
+    const res = await fetch("http://localhost:3000/api/admin/products/add",{method: "POST", data: JSON.stringify({...formData})});
+    console.log(await res.json(), "Manan");
   };
 
 
@@ -73,10 +74,7 @@ export default function ProductManage(){
         <input type="text" name="language" value={formData.language} onChange={handleChange} placeholder='Language'/>
       </label>
 
-      <button type="submit" onClick={()=> {
-        clicked();
-        handleSubmit();
-        }}>Submit</button>
+      <button type="submit" onClick={handleSubmit}>Submit</button>
     </form>
     <div className="product-display">
         <ul>{

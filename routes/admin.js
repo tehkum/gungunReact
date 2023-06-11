@@ -13,10 +13,10 @@ router.route('/products')
 
 router.route('/products/:id/edit')
     .get(getEditProduct)
-    .post(editProduct);
+    .put(editProduct);
 
 router.route('/products/:id/delete')
-    .post(deleteProduct);
+    .delete(deleteProduct);
 
 router.route('/products/add')
     .get(getAddProduct)
@@ -27,7 +27,7 @@ router.route('/youtube/add')
     .post(addYoutube);
 
 router.route('/youtube/:id/delete')
-    .post(deleteYoutube);
+    .delete(deleteYoutube);
 
 router.route('/orders')
     .get(getAllOrders);
