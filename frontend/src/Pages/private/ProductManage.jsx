@@ -80,7 +80,7 @@ export default function ProductManage(){
     </form>
     <div className="product-display">
         <ul>{
-            productData.map(items=>{
+            productData?.map(items=>{
              const { _id, name, category, description1, description2, manufactureYear, price, edition, numberOfPages, language } = items;
              return <><li key={_id}>{name} -- { category } -- { description1 } -- { description2 } -- {manufactureYear} -- { price } -- { edition } -- { numberOfPages } -- { language }</li></>   
             })    

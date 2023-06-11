@@ -1,58 +1,50 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CategoryBox from "../../Components/CategoryBox";
-import Productcard from "../../Components/productCard";
+import ProductCard from "../../Components/ProductCard";
 import "./Homepage.css";
+import { useProducts } from "../../main";
+
+export default function HomePage() {
+  const { productData } = useContext(useProducts);
 
 
 
-export default function HomePage(){
-    const [ products, setProducts ] = useState([]);
+  const addProduct = () => {
+    
+  };
 
-    useEffect(() => {
-        fetch('/api/products')
-          .then((response) => response.json())
-          .then((data) => setProducts(data))
-          .catch((error) => console.error('Error:', error));
-      }, []);
-
-      const addProduct = () => {
-            const newProduct = { name: 'New Product', price: 9.99 };
+  return (
+    <>
+      <div className="home-carousel">
+        <Carousel>
+          <div className="home-carousel-layout">
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 1" width="100" height="100" className="Image-carousel
+            "/>
+          </div>
+          <div className="home-carousel-layout">
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 2" width="100" height="100" className="Image-carousel
+            "/>
+          </div>
+          <div className="home-carousel-layout">
+            <img src="https://picsum.photos/200/300" alt="Carousel Image 3" width="100" height="100" className="Image-carousel
+            "/>
+          </div>
+        </Carousel>
+      </div>
+      <div className="home-category">
+        <CategoryBox />
+      </div>
+      <div className="home-products">
+        {
+            productData?.map(items=>{
+             const { _id, name, category, description1, description2, manufactureYear, price, edition, numberOfPages, language } = items;
+             return <ProductCard key={_id} _id={_id} name={name} category={category} description1={description1} description2={description2} price={price} edition={edition} manufactureYear={manufactureYear} numberOfPages={numberOfPages} language={language}/>   
+            })    
+        }
         
-            fetch('/api/products', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(newProduct),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data.message);
-                // Refresh the product list
-                fetch('/api/products')
-                  .then((response) => response.json())
-                  .then((data) => setProducts(data))
-                  .catch((error) => console.error('Error:', error));
-              })
-              .catch((error) => console.error('Error:', error));
-          };
-
-    return <>
-        <div className="home-sec-one">
-            
-        </div>
-        <div className="home-sec-two">
-            <CategoryBox />
-        </div>
-        <div className="home-sec-three">
-        <button onClick={addProduct}>Add Product</button>
-        <ul>
-      {products?.map((product) => (
-          <li key={product._id}>
-            {product.name} - ${product.price}
-            {/* <button onClick={() => deleteProduct(product._id)}>Delete</button> */}
-          </li>
-        ))}
-      </ul>
-            <Productcard />
-        </div>
+      </div>
     </>
+  );
 }
