@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+// import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useProducts = createContext();
@@ -13,13 +13,10 @@ export function ProductProvider({ children }) {
     const res = await fetch("http://localhost:3000/api/admin/products",{method: 'GET'});
     const product = await res.json();
     setProductData(product.products);
-    // console.log(await res.json());
+    
   };  
-  // const fetchData = async () => {
-  //   const res = await axios.get("http://localhost:3000/api/admin/products");
-  //   setProductData(res.products);
-  //   // console.log(res);
-  // };
+  
+  
 
   useEffect(() => {   
     fetchData();
