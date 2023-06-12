@@ -27,3 +27,9 @@
     text-decoration: none;
     color: black;
 }
+
+@media (max-width: 767px) {
+    .nav-links-main {
+        display: none;
+    }
+}

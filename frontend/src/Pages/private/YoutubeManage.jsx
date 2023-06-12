@@ -7,7 +7,7 @@ export default function YoutubeManage() {
     title: "",
     category: "",
   });
-  const [ vidAdded, setVidAdded ] = useState(false)
+  const [vidAdded, setVidAdded] = useState(false);
 
   const [youtubeVids, setYoutubeVids] = useState([]);
 
@@ -48,7 +48,7 @@ export default function YoutubeManage() {
     } catch (error) {
       console.log(error);
     } finally {
-      setVidAdded(!vidAdded)
+      setVidAdded(!vidAdded);
     }
   };
 
@@ -89,16 +89,18 @@ export default function YoutubeManage() {
         <button onClick={handleSubmit}>Submit</button>
       </div>
       <div className="product-display">
-        <ul>
-          {youtubeVids.map((items) => {
-            const { _id, title, link } = items;
-            return (
-              <li key={_id}>
-                {title} -- {link}
-              </li>
-            );
-          })}
-        </ul>
+        {youtubeVids.map((items) => {
+          const { _id, title, link } = items;
+          return (
+            <div key={_id}>
+              <iframe
+                width="420"
+                height="315"
+                src={link}
+              ></iframe>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

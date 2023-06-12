@@ -31,8 +31,8 @@ export default function CartPage() {
           </div>
           <ul>{
             cartData.map(item=>{
-              const { _id, name, amount } = item;
-              return <CartCard key={_id} _id={_id} name={name} amount={amount} />
+              const { _id, name, price } = item;
+              return <CartCard key={_id} _id={_id} name={name} amount={price} />
             })
           }</ul>
           <hr />
