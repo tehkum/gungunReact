@@ -1,7 +1,7 @@
 export default function AddressPage(){
     return <>
     <div className="login-sec-2">
-        <h1>Add Product</h1>
+        <h1>Personal Information</h1>
         <label>
           <input
             type="text"

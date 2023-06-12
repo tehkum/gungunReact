@@ -15,15 +15,16 @@ export function ProductProvider({ children }) {
     setProductData(product.products);  
   };  
   
+  const clicked = () => {
+    setClicked(!isClicked);
+  }
   
 
   useEffect(() => {   
     fetchData();
-  }, [productData]);
+  }, [isClicked]);
 
-  const clicked = () => {
-    setClicked(!isClicked);
-  }
+  
   
   return (
     <useProducts.Provider
