@@ -6,6 +6,15 @@
     justify-content: center;
 }
 
+.home-category {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    gap: 10px;
+    background-color: rgba(180, 71, 223, 0.86);
+    /* padding: 0.5rem; */padding: 10px 0;
+}
+
 @media (max-width: 768px) {
     .home-products {
         margin: 10px;

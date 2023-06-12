@@ -12,19 +12,19 @@ export function ProductProvider({ children }) {
   const fetchData = async () => {
     const res = await fetch("http://localhost:3000/api/admin/products",{method: 'GET'});
     const product = await res.json();
-    setProductData(product.products);
-    
+    setProductData(product.products);  
   };  
   
+  const clicked = () => {
+    setClicked(!isClicked);
+  }
   
 
   useEffect(() => {   
     fetchData();
-  }, [productData]);
+  }, [isClicked]);
 
-  const clicked = () => {
-    setClicked(!isClicked);
-  }
+  
   
   return (
     <useProducts.Provider
