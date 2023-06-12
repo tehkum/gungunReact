@@ -20,15 +20,16 @@ export default function HomePage() {
       <div className="home-carousel">
         <Carousel>
           <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 1" height="600" className="Image-carousel
+            <img src="https://res.cloudinary.com/dbehxf29s/image/upload/v1686486216/gungun3img_pheggp.png" alt="Carousel Image 1" height="600" className="Image-carousel
+            "/>
+
+          </div>
+          <div className="home-carousel-layout">
+            <img src="https://res.cloudinary.com/dbehxf29s/image/upload/v1686486216/gungun2img_wuj6ng.png" alt="Carousel Image 2" height="600" className="Image-carousel
             "/>
           </div>
           <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 2" height="600" className="Image-carousel
-            "/>
-          </div>
-          <div className="home-carousel-layout">
-            <img src="https://picsum.photos/200/300" alt="Carousel Image 3" height="600" className="Image-carousel
+            <img src="https://res.cloudinary.com/dbehxf29s/image/upload/v1686486347/img1gungun_j5wgfy.png" alt="Carousel Image 3" height="600" className="Image-carousel
             "/>
           </div>
         </Carousel>

@@ -24,7 +24,7 @@ export default function AllRoutes(){
         <Route path="/Address" element={<AddressPage/>}/>
         {/* ******************************************************** */}
         <Route path="/admin/all-orders" element={<AllOrders/>} />
-        <Route path="/admin/all-products" element={<AllProducts/>} />
+        <Route path="/admin/all-products/:id" element={<AllProducts/>} />
         <Route path="/admin/all-videos" element={<AllVideos/>} />
         <Route path="/admin/order-management" element={<OrderManage/>} />
         <Route path="/admin/product-management" element={<ProductManage/>} />

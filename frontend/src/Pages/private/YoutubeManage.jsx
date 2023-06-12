@@ -1,50 +1,105 @@
-import { useState } from "react"
-import "./ProductManage.css"
+import { useEffect, useState } from "react";
+import "./ProductManage.css";
 
-export default function YoutubeManage(){
-    const [ videos, setVideos] = useState({
-        link: "",
-        title: "",
-        category: ""
-    });
+export default function YoutubeManage() {
+  const [videos, setVideos] = useState({
+    link: "",
+    title: "",
+    category: "",
+  });
+  const [ vidAdded, setVidAdded ] = useState(false)
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setVideos((prevData) => ({
-          ...prevData,
-          [name]: value
-        }));
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-      };
+  const [youtubeVids, setYoutubeVids] = useState([]);
 
-    return <div>
-    <form onSubmit={handleSubmit} className="login-sec-2">
+  const videoHandler = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/admin/", {
+        method: "GET",
+      });
+      const data = await res.json();
+      setYoutubeVids(data.youtube);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    videoHandler();
+  }, [vidAdded]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setVideos((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/admin/youtube/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...videos }),
+      });
+      console.log(await res.json());
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setVidAdded(!vidAdded)
+    }
+  };
+
+  return (
+    <div>
+      <div className="login-sec-2">
         <h1>Add Product</h1>
-      <label>
-        <input type="link" name="link" value={videos.link} onChange={handleChange} placeholder='Youtube link'/>
-      </label>
+        <label>
+          <input
+            type="link"
+            name="link"
+            value={videos.link}
+            onChange={handleChange}
+            placeholder="Youtube link"
+          />
+        </label>
 
-      <label>
-        <input type="text" name="category" value={videos.title} onChange={handleChange} placeholder="Category"/>
-      </label>
+        <label>
+          <input
+            type="text"
+            name="category"
+            value={videos.category}
+            onChange={handleChange}
+            placeholder="Category"
+          />
+        </label>
 
-      <label>
-        <input type="text" name="price" value={videos.category} onChange={handleChange} placeholder="Price"/>
-      </label>
+        <label>
+          <input
+            type="text"
+            name="title"
+            value={videos.title}
+            onChange={handleChange}
+            placeholder="title"
+          />
+        </label>
 
-      
-      <button type="submit">Submit</button>
-    </form>
-    {/* <div className="product-display">
-        <ul>{
-            youtubeData.map(items=>{
-             const { _id, name, category, description1, description2, manufactureYear, price, edition, numberOfPages, language } = items;
-             return <li key={_id}>{name} -- { category } -- { description1 } -- { description2 } -- {manufactureYear} -- { price } -- { edition } -- { numberOfPages } -- { language }</li>     
-            })    
-        }</ul>
-    </div> */}
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <div className="product-display">
+        <ul>
+          {youtubeVids.map((items) => {
+            const { _id, title, link } = items;
+            return (
+              <li key={_id}>
+                {title} -- {link}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
+  );
 }

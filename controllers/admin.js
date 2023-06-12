@@ -120,7 +120,7 @@ async function addProduct(req, res) {
         //     });
 
         Product.create(product).then(createdProduct => {
-            // console.log('Product created:', createdProduct);
+            console.log('Product created:', createdProduct);
             res.status(200).json({
                 success: true,
                 message: "Product added successfully"
