@@ -68,6 +68,47 @@ export default function ProductManage() {
         </label>
 
         <label>
+          Front Image
+          <input
+            type="file"
+            name="image1"
+            // value={formData.category}
+            onChange={handleChange}
+            // placeholder="Category"
+          />
+        </label>
+        <label>
+          Image 1
+          <input
+            type="file"
+            name="image2"
+            // value={formData.category}
+            onChange={handleChange}
+            // placeholder="Category"
+          />
+        </label>
+        <label>
+          Image 2
+          <input
+            type="file"
+            name="image3"
+            // value={formData.category}
+            onChange={handleChange}
+            // placeholder="Category"
+          />
+        </label>
+        <label>
+          Image 3
+          <input
+            type="file"
+            name="image4"
+            // value={formData.category}
+            onChange={handleChange}
+            // placeholder="Category"
+          />
+        </label>
+
+        <label>
           <input
             type="text"
             name="price"

@@ -1,23 +1,45 @@
+import { useState } from "react";
+
 export default function AddressPage(){
+  const [ addressData, setAddress ] = useState({
+    fullName: "",
+    phoneNo: "",
+    address1: "",
+    address2: "",
+    city: "",
+    pincode: "",
+    country: ""
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setAddress((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(addressData);
+  };
+
+
     return <>
     <div className="login-sec-2">
         <h1>Personal Information</h1>
         <label>
           <input
             type="text"
-            name="name"
-            // value={formData.name}
-            // onChange={handleChange}
+            name="fullName"
+            value={addressData.fullName}
+            onChange={handleChange}
             placeholder="Full Name"
           />
         </label>
 
         <label>
           <input
-            type="text"
-            name="category"
-            // value={formData.category}
-            // onChange={handleChange}
+            type="number"
+            name="phoneNo"
+            value={addressData.phoneNo}
+            onChange={handleChange}
             placeholder="Mobile Number"
           />
         </label>
@@ -25,9 +47,9 @@ export default function AddressPage(){
         <label>
           <input
             type="text"
-            name="price"
-            // value={formData.price}
-            // onChange={handleChange}
+            name="address1"
+            value={addressData.address1}
+            onChange={handleChange}
             placeholder="Address Lane 1"
           />
         </label>
@@ -35,9 +57,9 @@ export default function AddressPage(){
         <label>
           <input
             type="text"
-            name="description1"
-            // value={formData.description1}
-            // onChange={handleChange}
+            name="address2"
+            value={addressData.address2}
+            onChange={handleChange}
             placeholder="Address Lane 2"
           ></input>
         </label>
@@ -46,19 +68,19 @@ export default function AddressPage(){
         <label>
           <input
             type="text"
-            name="City"
-            // value={formData.manufactureYear}
-            // onChange={handleChange}
+            name="city"
+            value={addressData.city}
+            onChange={handleChange}
             placeholder="City"
           />
         </label>
 
         <label>
           <input
-            type="text"
-            name="edition"
-            // value={formData.edition}
-            // onChange={handleChange}
+            type="number"
+            name="pincode"
+            value={addressData.pincode}
+            onChange={handleChange}
             placeholder="Pin Code"
           />
         </label>
@@ -66,9 +88,9 @@ export default function AddressPage(){
         <label>
           <input
             type="text"
-            name="numberOfPages"
-            // value={formData.numberOfPages}
-            // onChange={handleChange}
+            name="country"
+            value={addressData.country}
+            onChange={handleChange}
             placeholder="Country"
           />
         </label>
