@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}));
 
 
-app.use('/api', require('./routes/main'));
+app.use('/api/', require('./routes/main'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/order', require('./routes/order'));
 
