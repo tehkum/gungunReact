@@ -6,6 +6,11 @@ const youtubeSchema = new mongoose.Schema({
     required: [true, "Please Enter product Name"],
     trim: true,
   },
+  category: {
+    type: String,
+    required: [true, "Please Enter category"],
+    trim: true,
+  },
   link: {
     type: String,
     required: [true, "Please Enter the youtube video link"]

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const {getAdminPage, getAllProducts, getEditProduct, editProduct, deleteProduct,getAddProduct,addProduct,getAllOrders, getAddYoutube, addYoutube, deleteYoutube} = require('../controllers/admin');
+const {getAdminPage, getAllProducts, getEditProduct, editProduct, deleteProduct,getAddProduct,addProduct,getAllOrders, getAddYoutube, addYoutube, deleteYoutube, deleteReview} = require('../controllers/admin');
 
 
 router.route('/')
@@ -31,5 +31,8 @@ router.route('/youtube/:id/delete')
 
 router.route('/orders')
     .get(getAllOrders);
+
+router.route('/review/:productId/:id/delete')
+    .delete(deleteReview);
 
 module.exports = router;

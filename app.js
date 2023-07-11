@@ -3,11 +3,16 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
+// app.use(fileUpload({
+//   useTempFiles : true,
+//   tempFileDir : '/tmp/'
+// }));
+app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 
