@@ -8,7 +8,6 @@ const youtubeSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: [true, "Please Enter category"],
     trim: true,
   },
   link: {

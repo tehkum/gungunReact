@@ -177,20 +177,8 @@ async function addYoutube(req, res) {
       link: link,
     });
 
-    // Youtube.insertOne(youtube)
-    //     .then((result) => {
-    //         console.log(result);
-    //         res.status(200).json({
-    //             success: true
-    //         })
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error inserting user:', error);
-    //     });
-
     Youtube.create(youtube)
       .then((createdYoutube) => {
-        // console.log('Youtube created:', createdYoutube);
         res.status(200).json({
           success: true,
           message: "Youtube added successfully",
