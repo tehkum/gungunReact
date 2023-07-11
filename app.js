@@ -16,11 +16,6 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}));
 
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://gun-main-iczg.vercel.app/");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 app.use('/api/', require('./routes/main'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/order', require('./routes/order'));
