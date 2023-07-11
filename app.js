@@ -20,10 +20,10 @@ app.use('/api/', require('./routes/main'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/order', require('./routes/order'));
 
-app.use(express.static(path.join(__dirname, "./frontend/public")));
+// app.use(express.static(path.join(__dirname, "./frontend/public")));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "./frontend/index.html"));
-  });
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "./frontend/index.html"));
+//   });
 
 module.exports = app;
