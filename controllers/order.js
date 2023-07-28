@@ -1,4 +1,5 @@
 const Order = require("../models/orderModel");
+const dayjs = require("dayjs");
 
 async function getCheckoutPage(req, res) {
   try {
@@ -10,6 +11,8 @@ async function getCheckoutPage(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
 
 async function checkout(req, res) {
   try {
@@ -33,6 +36,7 @@ async function checkout(req, res) {
       city: city,
       country: country,
       pincode: pincode,
+      orderDate: formatDate()
     });
 
     Order.create(order)

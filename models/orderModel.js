@@ -41,7 +41,14 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  orderDate: {
+    type: Date,
+    required: true,
+  },
+  // delivered: {
+  //   type: String,
+    // required: true,
+  // },
   // fullName: "",
   //   phoneNo: "",
   //   address1: "",
