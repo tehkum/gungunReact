@@ -2,6 +2,7 @@ const Product = require("../models/productModel");
 const Orders = require("../models/orderModel");
 const Youtube = require("../models/youtubeModel");
 const Review = require("../models/reviewModel");
+const Coupon = require("../models/couponModel");
 const cloudinary = require("cloudinary").v2;
 
 async function getAdminPage(req, res) {
@@ -9,12 +10,14 @@ async function getAdminPage(req, res) {
     const products = await Product.find();
     const orders = await Orders.find();
     const youtube = await Youtube.find();
+    const coupon = await Coupon.find();
 
     res.status(200).json({
       success: true,
       products: products,
       orders: orders,
       youtube: youtube,
+      coupon: coupon,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -240,6 +243,59 @@ async function getAllOrders(req, res) {
   }
 }
 
+async function getAddCoupon(req, res) {
+  try {
+    res.status(200).json({
+      success: true,
+      message: "getCoupon called successfully!",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function addCoupon(req, res) {
+  try {
+    const { couponCode, discount } = req.body;
+    const coupon = new Coupon({
+      couponCode: couponCode,
+      discount: discount,
+    });
+
+    Coupon.create(coupon)
+      .then((createdCoupon) => {
+        res.status(200).json({
+          success: true,
+          message: "Coupon added successfully",
+        });
+      })
+      .catch((error) => {
+        console.error("Error creating Coupon:", error);
+      });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function deleteCoupon(req, res) {
+  try {
+    const { id } = req.params;
+
+    const deletedCoupon = await Coupon.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: "coupon deleted successfully",
+      deletedCoupon: deletedCoupon,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   getAdminPage: getAdminPage,
   getAllProducts: getAllProducts,
@@ -253,4 +309,7 @@ module.exports = {
   addYoutube: addYoutube,
   deleteYoutube: deleteYoutube,
   getAllOrders: getAllOrders,
+  deleteCoupon,
+  getAddCoupon,
+  addCoupon,
 };
