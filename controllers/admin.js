@@ -257,10 +257,11 @@ async function getAddCoupon(req, res) {
 
 async function addCoupon(req, res) {
   try {
-    const { couponCode, discount } = req.body;
+    const { couponCode, discount, amount } = req.body;
     const coupon = new Coupon({
       couponCode: couponCode,
       discount: discount,
+      amount: amount
     });
 
     Coupon.create(coupon)
