@@ -45,6 +45,10 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  totalPrice: {
+    type: Number,
+    // required: true,
+  }
   // delivered: {
   //   type: String,
     // required: true,

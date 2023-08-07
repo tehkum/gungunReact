@@ -25,6 +25,7 @@ async function checkout(req, res) {
       city,
       country,
       pincode,
+      totalPrice,
     } = req.body;
 
     const order = new Order({
@@ -36,7 +37,8 @@ async function checkout(req, res) {
       city: city,
       country: country,
       pincode: pincode,
-      orderDate: formatDate()
+      totalPrice: totalPrice,
+      orderDate: formatDate(),
     });
 
     Order.create(order)
