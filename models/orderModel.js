@@ -27,19 +27,19 @@ const orderSchema = new mongoose.Schema({
   },
   address2: {
     type: String,
-    required: true,
+    // required: true,
   },
   city: {
     type: String,
-    required: true,
+    // required: true,
   },
   country: {
     type: String,
-    required: true,
+    // required: true,
   },
   pincode: {
     type: String,
-    required: true,
+    // required: true,
   },
   orderDate: {
     type: Date,
