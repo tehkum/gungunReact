@@ -8,11 +8,4 @@ router.route('/checkout')
     .get(getCheckoutPage)
     .post(checkout);
 
-router.route('/delivery')
-    .get(getDeliveryPage)
-    .post(confirmDelivery);
-
-router.route('/confirm')
-    .get(getConfirmOrder);
-
 module.exports = router;
