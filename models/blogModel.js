@@ -27,11 +27,11 @@ const blogSchema = new mongoose.Schema(
     title: { type: String, required: true },
     body: [
       {
-        content: String,
-        type: {
-          enum: ["image", "subheading", "paragraph"],
-          runValidators: true,
-        },
+        content: [
+          {
+            type: String,
+          },
+        ],
       },
     ],
   },
