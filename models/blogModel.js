@@ -29,7 +29,12 @@ const blogSchema = new mongoose.Schema(
       {
         content: [
           {
-            type: String,
+            type: {
+              type: String,
+            },
+            content: { type: String },
+            src: { type: String },
+            alt: { type: String },
           },
         ],
       },
