@@ -263,7 +263,7 @@ async function addCoupon(req, res) {
     const coupon = new Coupon({
       couponCode: couponCode,
       discount: discount,
-      amount: amount
+      amount: amount,
     });
 
     Coupon.create(coupon)
@@ -313,11 +313,11 @@ async function getAddBlog(req, res) {
 
 async function addBlog(req, res) {
   try {
-    const { title, content } = req.body;
+    const { title, mainImg, subtopic } = req.body;
     const blog = new Blog({
       title: title,
-      content: content,
-      created_at: Date.now()
+      mainImg: mainImg,
+      subtopic: subtopic,
     });
 
     Blog.create(blog)
@@ -371,5 +371,5 @@ module.exports = {
   addCoupon,
   getAddBlog,
   addBlog,
-  deleteBlog
+  deleteBlog,
 };
