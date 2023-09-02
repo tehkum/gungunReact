@@ -3,6 +3,7 @@ const Orders = require("../models/orderModel");
 const Youtube = require("../models/youtubeModel");
 const Review = require("../models/reviewModel");
 const Coupon = require("../models/couponModel");
+const Blog = require("../models/blogModel");
 const cloudinary = require("cloudinary").v2;
 
 async function getAdminPage(req, res) {
@@ -11,6 +12,7 @@ async function getAdminPage(req, res) {
     const orders = await Orders.find();
     const youtube = await Youtube.find();
     const coupon = await Coupon.find();
+    const blog = await Blog.find();
 
     res.status(200).json({
       success: true,
@@ -297,6 +299,60 @@ async function deleteCoupon(req, res) {
   }
 }
 
+async function getAddBlog(req, res) {
+  try {
+    res.status(200).json({
+      success: true,
+      message: "getBlog called successfully!",
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function addBlog(req, res) {
+  try {
+    const { title, content } = req.body;
+    const blog = new Blog({
+      title: title,
+      content: content,
+      created_at: Date.now()
+    });
+
+    Blog.create(blog)
+      .then((createdBlog) => {
+        res.status(200).json({
+          success: true,
+          message: "Blog added successfully",
+        });
+      })
+      .catch((error) => {
+        console.error("Error creating Coupon:", error);
+      });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function deleteBlog(req, res) {
+  try {
+    const { id } = req.params;
+
+    const deletedBlog = await Blog.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Blog deleted successfully",
+      deletedBlog: deletedBlog,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   getAdminPage: getAdminPage,
   getAllProducts: getAllProducts,
@@ -313,4 +369,7 @@ module.exports = {
   deleteCoupon,
   getAddCoupon,
   addCoupon,
+  getAddBlog,
+  addBlog,
+  deleteBlog
 };

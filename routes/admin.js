@@ -17,6 +17,9 @@ const {
   getAddCoupon,
   addCoupon,
   deleteCoupon,
+  getAddBlog,
+  addBlog,
+  deleteBlog
 } = require("../controllers/admin");
 
 router.route("/").get(getAdminPage);
@@ -42,5 +45,9 @@ router.route("/review/:productId/:id/delete").delete(deleteReview);
 router.route("/coupon/add").get(getAddCoupon).post(addCoupon);
 
 router.route("/coupon/:id/delete").delete(deleteCoupon);
+
+router.route("/blog/add").get(getAddBlog).post(addBlog);
+
+router.route("/blog/:id/delete").delete(deleteBlog);
 
 module.exports = router;
