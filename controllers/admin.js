@@ -11,8 +11,8 @@ async function getAdminPage(req, res) {
     const products = await Product.find();
     const orders = await Orders.find();
     const youtube = await Youtube.find();
-    const coupon = await Coupon.find();
     const blog = await Blog.find();
+    const coupon = await Coupon.find();
 
     res.status(200).json({
       success: true,
@@ -20,7 +20,7 @@ async function getAdminPage(req, res) {
       orders: orders,
       youtube: youtube,
       coupon: coupon,
-      blog: true,
+      blog: blog,
     });
   } catch (error) {
     console.error("Error:", error);
