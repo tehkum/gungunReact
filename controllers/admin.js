@@ -313,10 +313,11 @@ async function getAddBlog(req, res) {
 
 async function addBlog(req, res) {
   try {
-    const { title, body } = req.body;
+    const { title, body, mainImg } = req.body;
     const blog = new Blog({
       title: title,
       body: body,
+      mainImg: mainImg,
     });
 
     Blog.create(blog)
@@ -332,6 +333,20 @@ async function addBlog(req, res) {
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+async function getSpecificBlog(req, res) {
+  try {
+    const { blogId } = req.params;
+    const blog = await Blog.findById(blogId);
+    if (blog) {
+      res.json({ data: blog });
+    } else {
+      res.json({ message: "no blog found" });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error });
   }
 }
 
@@ -371,4 +386,5 @@ module.exports = {
   getAddBlog,
   addBlog,
   deleteBlog,
+  getSpecificBlog,
 };

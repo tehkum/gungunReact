@@ -19,7 +19,8 @@ const {
   deleteCoupon,
   getAddBlog,
   addBlog,
-  deleteBlog
+  deleteBlog,
+  getSpecificBlog
 } = require("../controllers/admin");
 
 router.route("/").get(getAdminPage);
@@ -49,5 +50,7 @@ router.route("/coupon/:id/delete").delete(deleteCoupon);
 router.route("/blog/add").get(getAddBlog).post(addBlog);
 
 router.route("/blog/:id/delete").delete(deleteBlog);
+
+router.route("/blog/:blogId").post(getSpecificBlog);
 
 module.exports = router;
