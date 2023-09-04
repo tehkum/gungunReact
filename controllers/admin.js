@@ -11,7 +11,7 @@ async function getAdminPage(req, res) {
     const products = await Product.find();
     const orders = await Orders.find();
     const youtube = await Youtube.find();
-    const blog = await Blog.find();
+    // const blog = await Blog.find();
     const coupon = await Coupon.find();
 
     res.status(200).json({
@@ -20,7 +20,7 @@ async function getAdminPage(req, res) {
       orders: orders,
       youtube: youtube,
       coupon: coupon,
-      blog: blog,
+      // blog: blog,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -351,6 +351,19 @@ async function getSpecificBlog(req, res) {
   }
 }
 
+async function getAllBlog(req, res) {
+  try {
+    const blog = await Blog.find();
+    if (blog) {
+      res.json({ data: blog });
+    } else {
+      res.json({ message: "no blog found" });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error });
+  }
+}
+
 async function deleteBlog(req, res) {
   try {
     const { id } = req.params;
@@ -388,4 +401,5 @@ module.exports = {
   addBlog,
   deleteBlog,
   getSpecificBlog,
+  getAllBlog,
 };
