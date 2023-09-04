@@ -20,7 +20,7 @@ async function getAdminPage(req, res) {
       orders: orders,
       youtube: youtube,
       coupon: coupon,
-      blog: blog,
+      blog: true,
     });
   } catch (error) {
     console.error("Error:", error);
