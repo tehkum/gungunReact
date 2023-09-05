@@ -54,6 +54,6 @@ router.route("/blog/add").get(getAddBlog).post(addBlog);
 
 router.route("/blog/:id/delete").delete(deleteBlog);
 
-router.route("/blog/:blogId").post(getSpecificBlog);
+router.route("/blog/:blogId").get(getSpecificBlog);
 
 module.exports = router;
