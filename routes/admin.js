@@ -22,11 +22,15 @@ const {
   deleteBlog,
   getSpecificBlog,
   getAllBlog,
+  getSpecificProduct,
 } = require("../controllers/admin");
+
 
 router.route("/").get(getAdminPage);
 
 router.route("/products").get(getAllProducts);
+
+router.route("/products/:productId/get").get(getSpecificProduct);
 
 router.route("/products/:id/edit").get(getEditProduct).put(editProduct);
 
