@@ -10,7 +10,7 @@ const fileUpload = require("express-fileupload");
 //   tempFileDir : '/tmp/'
 // }));
 const corsOptions = {
-  origin: "https://gungunboutique.in",
+  origin: "https://gungunboutique.in/",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 204,
 };
