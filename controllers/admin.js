@@ -328,11 +328,12 @@ async function getAddBlog(req, res) {
 
 async function addBlog(req, res) {
   try {
-    const { title, body, mainImg } = req.body;
+    const { content, heading, coverImage, category } = req.body;
     const blog = new Blog({
-      title: title,
-      body: body,
-      mainImg: mainImg,
+      content: content,
+      heading: heading,
+      coverImage: coverImage,
+      category: category
     });
 
     Blog.create(blog)
