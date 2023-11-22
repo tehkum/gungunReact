@@ -9,18 +9,18 @@ const fileUpload = require("express-fileupload");
 //   useTempFiles : true,
 //   tempFileDir : '/tmp/'
 // }));
-// const corsOptions = {
-//   origin: "https://gungunboutique.in/",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   optionsSuccessStatus: 204,
-// };
+const corsOptions = {
+  origin: "https://gungunboutique.in/",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 204,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+// app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/", require("./routes/main"));
